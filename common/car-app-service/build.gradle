@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.example.places.carappservice'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 23
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.0'
+    // This is the primary artifact of the Car App Library and includes all of the core classes used when building apps.
+    implementation "androidx.car.app:app:$car_app_library_version"
+    // This is the same data module used by the existing mobile app and allows the same data source to be used for every version of the app experience.
+    implementation project(":common:data")
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+    // Following dependencies won't make the app work due to manifest merger conflicts caused by mixing AndroidX and old Android Support libraries, which is not allowed.
+    /*
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+     */
+}
