@@ -17,16 +17,19 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    // Add the Google services Gradle plugin
+    id 'com.google.gms.google-services'
 }
 
 android {
     namespace 'com.example.android.cars.places'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.example.android.cars.places"
         minSdk 23
-        targetSdk 33
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -63,6 +66,21 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Import the Firebase BoM
+//    implementation platform('com.google.firebase:firebase-bom:33.15.0')
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+//    implementation 'com.google.firebase:firebase-analytics'
+//    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-messaging:24.0.0'
+    implementation 'com.google.firebase:firebase-core:20.0.0'
+
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
+
     // Rely on the car-app-service module so the CarAppService is included in the mobile app's manifest
     implementation project(path: ':common:car-app-service')
 

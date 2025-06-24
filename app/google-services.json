@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1096920216112",
+    "project_id": "nkc-project-853b0",
+    "storage_bucket": "nkc-project-853b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096920216112:android:ed7430f5706c75c0b3f3f5",
+        "android_client_info": {
+          "package_name": "com.example.android.cars.places"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC_RtSu-PUdAmq6904U3_IkR9wzOmMGGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

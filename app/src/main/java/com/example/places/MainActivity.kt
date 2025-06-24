@@ -17,7 +17,10 @@
 package com.example.places
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.car.app.connection.CarConnection
@@ -46,12 +49,37 @@ import com.example.places.data.PlacesRepository
 import com.example.places.data.model.Place
 import com.example.places.data.model.toIntent
 import com.example.places.ui.theme.PlacesTheme
+import com.google.firebase.messaging.FirebaseMessaging
 
 // Start Directory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Fetch FCM token when app starts
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            val msg = "FCM Token: $token"
+            Log.d("TAG", msg)
+            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+
+            // TODO: Optionally send the token to your server
+        }
+
+        // ✅ Request Notification Permission for Android 13+ (API 33)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
+        }
+
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
