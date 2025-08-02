@@ -70,4 +70,4 @@ This app uses:
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/awhanray-05/your-repo-name.git
+   git clone https://github.com/awhanray-05/Places-App.git
